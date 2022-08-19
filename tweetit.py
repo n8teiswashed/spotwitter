@@ -1,4 +1,4 @@
-import requests, json, tweepy, spotipy, time
+import json, tweepy, spotipy, time
 from keys import *
 from spotipy.oauth2 import SpotifyOAuth
 
