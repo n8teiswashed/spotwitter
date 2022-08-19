@@ -1,7 +1,7 @@
 # spotwitter
 
 needed libraries:
-tweepy, spotipy, time, json
+tweepy, spotipy
 
 to get necessary api keys: 
 go to both twitter and spotify developer portals and create applications -> navigate to keys tab on both dashboards
