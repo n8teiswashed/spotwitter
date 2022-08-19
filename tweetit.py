@@ -7,6 +7,11 @@ auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
 auth.set_access_token(access_token, access_token_secret)
 api = tweepy.API(auth)
 
+sp = spotipy.Spotify(auth_manager=SpotifyOAuth(client_id=client_id,
+                                                client_secret=client_secret,
+                                                redirect_uri=redirect_uri,
+                                                scope=scope))
+
 def auth(client_id, client_secret, redirect_uri, scope):
     sp = spotipy.Spotify(auth_manager=SpotifyOAuth(client_id=client_id,
                                                 client_secret=client_secret,
