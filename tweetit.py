@@ -2,7 +2,7 @@ import json, tweepy, spotipy, time
 from keys import *
 from spotipy.oauth2 import SpotifyOAuth
 
-
+#establish auth w/ access tokens
 auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
 auth.set_access_token(access_token, access_token_secret)
 api = tweepy.API(auth)
@@ -19,6 +19,7 @@ def auth(client_id, client_secret, redirect_uri, scope):
                                                 scope=scope))
     
 def tweet_song(client_id, client_secret, redirect_uri, scope):
+    #get currently platying track and parsing title/artist/album, formatting into tweet and publishing
     results = sp.current_user_playing_track()
     artist_name = results['item']['artists'][0]['name']
     song_name = results['item']['name']
@@ -29,7 +30,7 @@ def tweet_song(client_id, client_secret, redirect_uri, scope):
     print('now tweeting...')
     api.update_status(tweet_string)
 
-
+#always re-establish auth to make sure never logged out or invalid bearer tokens
 while True:
     try:
         auth(client_id, client_secret, redirect_uri, scope)
@@ -55,6 +56,7 @@ while True:
         time.sleep(5)
 
 while True:
+    #address all scenarios that could be encountered (same song played/new song played/error occurs)
     try:
         auth(client_id, client_secret, redirect_uri, scope)
         new_track = sp.current_user_playing_track()
